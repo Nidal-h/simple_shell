@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * check_for_builtin : Verifies whether the command is a builtin
+ * check_for_builtin - Verifies whether the command is a builtin
  * @arguments: The array of arguments
  *
  * Return: the command is a builtin return 1, return 0 if its not builtin.

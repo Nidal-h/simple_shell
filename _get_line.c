@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * get_line : retrieve the string typed by the user.
+ * get_line - retrieve the string typed by the user.
  *
  * Return: The string.
 */

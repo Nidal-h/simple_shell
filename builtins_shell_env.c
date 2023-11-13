@@ -1,7 +1,8 @@
 #include "shell.h"
 
 /**
- * shell_env : Displays all variables of the environment.
+ * shell_env - Displays all variables of the environment.
+ *
  * Return: Void.
  */
 int shell_env(void)

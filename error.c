@@ -3,6 +3,7 @@
 /**
  * _puts - Displays a string to the standard output stream.
  * @string: The string to be printed.
+ *
  * Return: Void
  */
 void _puts(char *string)

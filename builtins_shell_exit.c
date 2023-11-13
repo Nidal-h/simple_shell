@@ -1,8 +1,10 @@
 #include "shell.h"
 
 /**
- * shell_exit : Terminates the shell.
+ * shell_exit - Terminates the shell.
  * @arguments: The array of Arguments.
+ *
+ * Return: Nothing.
  */
 void shell_exit(char **arguments)
 {
