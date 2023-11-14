@@ -1,11 +1,7 @@
 #include "shell.h"
 
-/**
- * execute - Execute a command along with its arguments.
- * @arguments: An array that contains the command and its arguments.
- *
- * Return: The status of the executed command.
- */
+
+
 int execute(char **arguments)
 {
 	char *env_vars[2], *full_path;
