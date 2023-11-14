@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * get_line - retrieve the string typed by the user.
+ * get_line - Retrieve the string typed by the user.
  *
  * Return: The string.
-*/
+ */
 void *get_line(void)
 {
 	char curr_char;
@@ -12,7 +12,6 @@ void *get_line(void)
 	int len = 0;
 	static char buf[BUFFER_SIZE];
 	char *str = NULL;
-	
 
 	while (1)
 	{
@@ -20,6 +19,7 @@ void *get_line(void)
 		{
 			buffer_size = read(STDIN_FILENO, buf, BUFFER_SIZE);
 			buffer_pos = 0;
+
 			if (buffer_size == 0)
 				return (str);
 			else if (buffer_size < 0)
@@ -30,7 +30,6 @@ void *get_line(void)
 		}
 
 		curr_char = buf[buffer_pos];
-
 		buffer_pos++;
 
 		if (curr_char == '\n')
