@@ -36,6 +36,7 @@ void handle_sigint(int signal);
 void handle_sigquit(int signal);
 void handle_sigstp(int signal);
 
+
 /* built-in funcions */
 int check_for_builtin(char **arguments);
 int execute_buitlin(char *cmd, char **arguments);
@@ -46,6 +47,7 @@ int shell_setenv(char **arguments);
 int shell_unsetenv(char **arguments);
 int shell_env(void);
 int shell_clear(char **arguments);
+
 
 /* find in path */
 char *find_in_path(char *cmd);
@@ -60,8 +62,10 @@ char **tokenize_input(char *input);
 /* get env */
 char *_getenv(const char *n);
 
+
 /* get path */
 char *get_path(void);
+
 
 /* utils funcs1 */
 int _strlen(const char *string);
@@ -71,15 +75,25 @@ char *_strstr(char *haystack, char *needle);
 char *_strchr(char *string, char ch);
 
 
+/* utils funcs3 */
+int _atoi(const char *string);
+char *_memset(char *s, char byte, unsigned int number);
+char *_memcpy(char *destination, char *source, unsigned int n);
+void *_realloc(void *pointer, unsigned int old_sz, unsigned int new_sz);
+void *_calloc(unsigned int nmemb, unsigned int size);
+
+
 
 /* free */
 void free_error(char **argp, char *arguments);
 void free_tokens(char **pointer);
 void free_path(void);
 
+
 /* error */
 void _puts(char *string);
 void _puterror(char *error);
+
 
 
 /* utils_funcs2 */
@@ -89,11 +103,5 @@ char *_strdup(const char *string);
 int _putchar(char ch);
 unsigned int _strspn(char *s, char *acc);
 
-/* utils funcs3 */
-int _atoi(const char *string);
-char *_memset(char *s, char byte, unsigned int number);
-char *_memcpy(char *destination, char *source, unsigned int n);
-void *_realloc(void *pointer, unsigned int old_sz, unsigned int new_sz);
-void *_calloc(unsigned int nmemb, unsigned int size);
 
 #endif
