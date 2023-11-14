@@ -1,74 +1,83 @@
+```c
 #include "shell.h"
 
 /**
- * _strcpy - copying a string
- * @destination: desct
- * @source: src
+ * _strcpy - Copies a string from source to destination.
+ * @destination: The destination buffer.
+ * @source: The source string.
  *
- * Return: pointer to dest
+ * Return: A pointer to the destination buffer.
  */
 char *_strcpy(char *destination, char *source)
 {
-	int j = 0;
+	int index = 0;
 
-	if (destination == source || source == 0)
+	if (destination == source || source == NULL)
 		return (destination);
-	while (source[j])
+
+	while (source[index])
 	{
-		destination[j] = source[j];
-		j++;
+		destination[index] = source[index];
+		index++;
 	}
-	destination[j] = 0;
+	destination[index] = '\0';
 	return (destination);
 }
 
 /**
- * _strcat - concatenates two strings
- * @destination: the destination buffer
- * @source: the source buffer
+ * _strcat - Concatenates two strings.
+ * @destination: The destination buffer.
+ * @source: The source buffer.
  *
- * Return: pointer to destination buffer
+ * Return: A pointer to the destination buffer.
  */
 char *_strcat(char *destination, const char *source)
 {
-	char *r = destination;
+	char *result = destination;
 
 	while (*destination)
 		destination++;
+
 	while (*source)
 		*destination++ = *source++;
+
 	*destination = *source;
-	return (r);
+	return (result);
 }
 
 /**
  * _strdup - Creates a duplicate of a string.
- * @string: The string to be duplicated.
+ * @string: The target string.
  *
- * Return: Pointer to the duplicated string.
+ * Return: Pointer to the resulting string, or NULL on failure.
  */
 char *_strdup(const char *string)
 {
-	int len = 0;
-	char *r;
+	int length = 0;
+	char *result;
 
 	if (string == NULL)
 		return (NULL);
+
 	while (*string++)
-		len++;
-	r = malloc(sizeof(char) * (len + 1));
-	if (!r)
+		length++;
+
+	result = malloc(sizeof(char) * (length + 1));
+
+	if (!result)
 		return (NULL);
-	for (len++; len--;)
-		r[len] = *--string;
-	return (r);
+
+	for (length++; length--;)
+		result[length] = *--string;
+
+	return (result);
 }
 
 /**
- *_putchar - Outputs the character ch to the standard output.
+ * _putchar - Outputs the character 'ch' to the standard output.
  * @ch: The character to be printed.
- * Return: On success, returns 1.
- * On error, returns -1, and sets errno appropriately.
+ *
+ * Return: On success, returns 1. On error, returns -1, and sets errno appropriately.
  */
 int _putchar(char ch)
 {
@@ -76,13 +85,11 @@ int _putchar(char ch)
 }
 
 /**
- * _strspn - A function that calculates the
- *           length of a prefix substring
+ * _strspn - Calculates the length of a prefix substring.
+ * @s: Pointer to the input string.
+ * @acc: Substring prefix to search for.
  *
- * @s: pointer to the input string.
- * @acc: substring prefix to search for.
- *
- * Return: the number of bytes in the initial segment
+ * Return: The number of bytes in the initial segment.
  */
 unsigned int _strspn(char *s, char *acc)
 {
