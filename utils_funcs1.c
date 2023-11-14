@@ -19,9 +19,9 @@ int _strlen(const char *string)
 }
 
 /**
- * _strcmp - Compare two strings.
- * @string1: The first string to compare.
- * @string2: The second string to compare.
+ * _strcmp - Comparing two strings.
+ * @string1: The 1st string to compare.
+ * @string2: The 2nd string to compare.
  * Return: return 0 if @string1 and @string2 are equal,
  *         return negative value if @string1 is less than @string2,
  *         or a positive value if @string1 is greater than @string2.
