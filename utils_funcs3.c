@@ -95,17 +95,14 @@ void *_realloc(void *pointer, unsigned int old_sz, unsigned int new_sz)
 }
 
 /**
- * _calloc - a function that allocates
- *           memory for an array using malloc
+ * _calloc - a func that allocates
+ *           mem for an array using malloc
  *
- *           It is basically the equivalent to
- *           malloc followed by memset
- *
- * @nmemb: size of array
+ * @nmemb: Total size
  * @size: size of each element
  *
- * Return: pointer with new allocated memory
- *         or NULL if it fails
+ * Return: pointer with new alloc mem
+ *         or NULL if failed
 */
 
 void *_calloc(unsigned int nmemb, unsigned int size)
