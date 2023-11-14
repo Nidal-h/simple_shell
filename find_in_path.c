@@ -1,43 +1,43 @@
 #include "shell.h"
 
 /**
- * find_in_path - Searches for every command in each directory mentioned in the PATH
- *                environment variable
- * @cmd: pointer to the string `cmd`.
+ * find_in_path - Searches for a command in each directory mentioned in the PATH
+ *                environment variable.
+ * @cmd: Pointer to the string containing the command.
  *
- * Return: A pointer to the string containing the full path (success) if it is found,
- *         or NULL if it is not found (failure).
-*/
+ * Return: A pointer to the string containing the full path (success) if found,
+ *         or NULL if not found (failure).
+ */
 char *find_in_path(char *cmd)
 {
-	char buf[PATH_MAX_LENGTH], *path, *r, **directory;
+	char buffer[PATH_MAX_LENGTH], *path, *result, **directories;
 	struct stat st;
-	int st_ret, i;
+	int stat_result, i;
 
 	path = get_path();
 	if (!path)
 		return (NULL);
-	directory = tokenize(path, PATH_SEPARATOR);
-	if (!directory)
+	directories = tokenize(path, PATH_SEPARATOR);
+	if (!directories)
 		return (NULL);
-	for (i = 0; directory[i]; i++)
+	for (i = 0; directories[i]; i++)
 	{
-		_memset(buf, 0, PATH_MAX_LENGTH);
-		_strcpy(buf, directory[i]);
-		_strcat(buf, "/");
-		_strcat(buf, cmd);
-		st_ret = stat(buf, &st);
-		if (st_ret == 0 && S_ISREG(st.st_mode) && (st.st_mode & S_IXUSR))
+		_memset(buffer, 0, PATH_MAX_LENGTH);
+		_strcpy(buffer, directories[i]);
+		_strcat(buffer, "/");
+		_strcat(buffer, cmd);
+		stat_result = stat(buffer, &st);
+		if (stat_result == 0 && S_ISREG(st.st_mode) && (st.st_mode & S_IXUSR))
 		{
-			free_tokens(directory);
-			r = malloc(sizeof(char) * (strlen(buf) + 1));
-			if (!r)
+			free_tokens(directories);
+			result = malloc(sizeof(char) * (strlen(buffer) + 1));
+			if (!result)
 				return (NULL);
-			strcpy(r, buf);
-			return (r);
+			strcpy(result, buffer);
+			return (result);
 		}
 	}
-	if (st_ret == -1)
-		free_tokens(directory);
+	if (stat_result == -1)
+		free_tokens(directories);
 	return (NULL);
 }
