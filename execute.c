@@ -2,49 +2,62 @@
 
 /**
  * execute - Execute a command along with its arguments.
- * @arguments: An array that containe the command and its arguments.
+ * @arguments: An array that contains the command and its arguments.
  *
  * Return: The status of the executed command.
  */
 int execute(char **arguments)
 {
-	char *envi[2], *path;
-	pid_t i;
-	int s = 0;
+	char *env_vars[2], *full_path;
+	pid_t child_pid;
+	int status = 0;
 
 	if (arguments == NULL || *arguments == NULL)
-		return (s);
-	if (check_for_builtin(arguments))
-		return (s);
+		return (status);
 
-	i = fork();
-	if (i < 0)
+	if (check_for_builtin(arguments))
+		return (status);
+
+	child_pid = fork();
+	if (child_pid < 0)
 	{
 		_puterror("fork");
 		return (1);
 	}
-	if (i == -1)
-		perror(arguments[0]), free_tokens(arguments), free_last_input();
-	if (i == 0)
+
+	if (child_pid == -1)
 	{
-		envi[0] = get_path();
-		envi[1] = NULL;
-		path = NULL;
+		perror(arguments[0]);
+		free_tokens(arguments);
+		free_last_input();
+	}
+
+	if (child_pid == 0)
+	{
+		env_vars[0] = get_path();
+		env_vars[1] = NULL;
+		full_path = NULL;
+
 		if (arguments[0][0] != '/')
-			path = find_in_path(arguments[0]);
-		if (path == NULL)
-			path = arguments[0];
-		if (execve(path, arguments, envi) == -1)
+			full_path = find_in_path(arguments[0]);
+
+		if (full_path == NULL)
+			full_path = arguments[0];
+
+		if (execve(full_path, arguments, env_vars) == -1)
 		{
-			perror(arguments[0]), free_tokens(arguments), free_last_input();
+			perror(arguments[0]);
+			free_tokens(arguments);
+			free_last_input();
 			exit(EXIT_FAILURE);
 		}
 	}
 	else
 	{
 		do {
-			waitpid(i, &s, WUNTRACED);
-		} while (!WIFEXITED(s) && !WIFSIGNALED(s));
+			waitpid(child_pid, &status, WUNTRACED);
+		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
-	return (s);
+
+	return (status);
 }
