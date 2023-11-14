@@ -4,13 +4,12 @@
  * _puts - Displays a string to the standard output stream.
  * @string: The string to be printed.
  *
- * Return: Void
+ * Return: Void.
  */
 void _puts(char *string)
 {
 	ssize_t num;
 	size_t length;
-	
 
 	length = _strlen(string);
 	num = write(STDOUT_FILENO, string, length);
@@ -21,9 +20,10 @@ void _puts(char *string)
 }
 
 /**
- * _puterror - Displays an error message to the standard error stream
+ * _puterror - Displays an error message to the standard error stream.
  * @error: The error message to be printed.
- * Return: Void
+ *
+ * Return: Void.
  */
 void _puterror(char *error)
 {
