@@ -1,40 +1,40 @@
 #include "shell.h"
 
 /**
- * handle_sigint - Signal handler for SIGINT (Ctrl+C)
- * @signal: Signal number
+ * handle_sigint - Handles the SIGINT (Ctrl+C) signal.
+ * @signal: The signal number.
  *
- * Return: Nothing
+ * Return: Nothing.
  */
 void handle_sigint(int signal)
 {
-	(void) signal;
+	(void)signal;
 	_putchar('\n');
 	prompt();
 }
 
 /**
- * handle_sigquit - Signal handler for SIGQUIT (Ctrl+\)
- * @signal: Signal number
+ * handle_sigquit - Handles the SIGQUIT (Ctrl+\) signal.
+ * @signal: The signal number.
  *
- * Return: Nothing
+ * Return: Nothing.
  */
 void handle_sigquit(int signal)
 {
-	(void) signal;
+	(void)signal;
 	_puterror("Quit (core dumped)\n");
 	exit(EXIT_SUCCESS);
 }
 
 /**
- * handle_sigstp - Signal handler for SIGTSTP (Ctrl+Z)
- * @signal: Signal number
+ * handle_sigstp - Handles the SIGTSTP (Ctrl+Z) signal.
+ * @signal: The signal number.
  *
- * Return: Nothing
+ * Return: Nothing.
  */
 void handle_sigstp(int signal)
 {
-	(void) signal;
+	(void)signal;
 	_puts("\n");
 	prompt();
 }
