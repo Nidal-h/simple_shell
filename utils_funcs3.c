@@ -67,10 +67,10 @@ char *_memcpy(char *destination, char *source, unsigned int n)
 /**
  * _realloc - Adjusting the size of a previously allocated memory block.
  * @pointer: Pointer to the previous mallocated block.
- * @old_sz: Byte size of the previous block.
- * @new_sz: Byte size of the new block.
+ * @old_sz: Size of the previous block.
+ * @new_sz: Size of the new block.
  *
- * Return: Returns a pointer to the old block if successful.
+ * Return: Returns a pointer to the old block.
  */
 void *_realloc(void *pointer, unsigned int old_sz, unsigned int new_sz)
 {
