@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * _atoi - Converts a string to an integer.
+ * _atoi - Converting a str to an int.
  * @string: The string to convert.
  *
- * Return: The integer value of the string.
+ * Return: The int value of str.
  */
 int _atoi(const char *string)
 {
@@ -30,11 +30,11 @@ int _atoi(const char *string)
 }
 
 /**
- **_memset - Populates a memory area with a constant byte.
- *@s: Pointer to the memory area
- *@byte: The byte to fill the memory with
- *@number: The number of bytes to be filled.
- *Return: (s) a pointer to the memory area s
+ **_memset - Populating a memory area with a const byte.
+ *@s: Pointer to the mem area
+ *@byte: The byte to fill with
+ *@number: The num of bytes to fill.
+ *Return: (s) pointer to the mem area s
  */
 char *_memset(char *s, char byte, unsigned int number)
 {
