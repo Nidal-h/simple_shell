@@ -3,61 +3,61 @@
 /**
  * tokenize - Parses user input into arguments by dividing a string into 
  *            tokens using a specified delimiter.
- * @string: the string to be tokenized.
- * @delimeter: the delimiter used to split the string.
+ * @string: The string to be tokenized.
+ * @delimiter: The delimiter used to split the string.
  *
- * Return: array of pointers,
- *         or NULL if an error occurs.
+ * Return: An array of pointers to tokens, or NULL if an error occurs.
  */
-char **tokenize(char *string, const char *delimeter)
+char **tokenize(char *string, const char *delimiter)
 {
 	int j = 0;
-	char *tok = NULL;
-    char **r = NULL;
-	
-	tok = strtok(string, delimeter);
-	while (tok)
+	char *token = NULL;
+	char **result = NULL;
+
+	token = strtok(string, delimiter);
+	while (token)
 	{
-		r = realloc(r, sizeof(char *) * (j + 1));
-		if (r == NULL)
+		result = realloc(result, sizeof(char *) * (j + 1));
+		if (result == NULL)
 			return (NULL);
 
-		r[j] = malloc(_strlen(tok) + 1);
-		if (!(r[j]))
+		result[j] = malloc(_strlen(token) + 1);
+		if (!result[j])
 			return (NULL);
 
-		_strcpy(r[j], tok);
-		tok = strtok(NULL, delimeter);
+		_strcpy(result[j], token);
+		token = strtok(NULL, delimiter);
 		j++;
 	}
-	r = realloc(r, (j + 1) * sizeof(char *));
-	if (!r)
+
+	result = realloc(result, (j + 1) * sizeof(char *));
+	if (!result)
 		return (NULL);
 
-	r[j] = NULL;
-	return (r);
+	result[j] = NULL;
+	return result;
 }
 
 /**
  * tokenize_input - Divides a user input string into tokens using the tokenize() function.
  * @input: The user input string to be tokenized.
  *
- * Return: array of pointers, or NULL if an error occurs
+ * Return: An array of pointers to tokens, or NULL if an error occurs.
  */
 char **tokenize_input(char *input)
 {
-	char **toks = NULL;
-	char *tmp = NULL;
+	char **tokens = NULL;
+	char *temporary = NULL;
 
-	tmp = _strdup(input);
-	if (tmp == NULL)
+	temporary = _strdup(input);
+	if (temporary == NULL)
 	{
 		_puts("Memory allocation error\n");
 		exit(EXIT_FAILURE);
 	}
 
-	toks = tokenize(tmp, " \t\r\n\a");
-	free(tmp);
+	tokens = tokenize(temporary, " \t\r\n\a");
+	free(temporary);
 
-	return (toks);
+	return tokens;
 }

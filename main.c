@@ -1,39 +1,41 @@
 #include "shell.h"
 
 /**
- * main - simple shell
+ * main - Simple shell
  *
  * Return: EXIT_SUCCESS
  */
 int main(void)
 {
-	int p;
-	char **args;
-	char *i;
-	
-	/* Registering handlers */
+	int proceed;
+	char **arguments;
+	char *input;
+
+	/* Registering signal handlers */
 	signal(SIGINT, handle_sigint);
 	signal(SIGQUIT, handle_sigquit);
 	signal(SIGTSTP, handle_sigstp);
 
 	do {
-		i = get_input();
-		if (!i || !*i)/* EOF detected so we need to exit the loop */
+		input = get_input();
+		if (!input || !*input)/* EOF detected, exit the loop */
 			break;
 
-		args = tokenize_input(i);
-		if (!args || !*args)
+		arguments = tokenize_input(input);
+		if (!arguments || !*arguments)
 		{
-			free(i);
-			free_tokens(args);
+			free(input);
+			free_tokens(arguments);
 			continue;
 		}
-		p = execute(args);
-		free(i);
-		free_tokens(args);
 
-		p = 1;
-	} while (p);
+		proceed = execute(arguments);
+
+		free(input);
+		free_tokens(arguments);
+
+		proceed = 1;
+	} while (proceed);
 
 	return (EXIT_SUCCESS);
 }
