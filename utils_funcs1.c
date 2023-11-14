@@ -1,29 +1,31 @@
 #include "shell.h"
 
 /**
- * _strlen - represents the length of a string
- * @string: the string to determine the length to check
+ * _strlen - Calculates the length of a string.
+ * @string: The string to determine the length of.
  *
- * Return: integer length of string
+ * Return: Integer length of the string.
  */
 int _strlen(const char *string)
 {
-	int i = 0;
+	int length = 0;
 
 	if (!string)
 		return (0);
 
 	while (*string++)
-		i++;
-	return (i);
+		length++;
+
+	return (length);
 }
 
 /**
- * _strcmp - Comparing two strings.
- * @string1: The 1st string to compare.
- * @string2: The 2nd string to compare.
- * Return: return 0 if @string1 and @string2 are equal,
- *         return negative value if @string1 is less than @string2,
+ * _strcmp - Compares two strings.
+ * @string1: The first string to compare.
+ * @string2: The second string to compare.
+ *
+ * Return: 0 if @string1 and @string2 are equal,
+ *         a negative value if @string1 is less than @string2,
  *         or a positive value if @string1 is greater than @string2.
  */
 int _strcmp(const char *string1, const char *string2)
@@ -34,27 +36,27 @@ int _strcmp(const char *string1, const char *string2)
 		string2++;
 	}
 
-	return ((int) (*string1) - (*string2));
+	return ((int)(*string1) - (*string2));
 }
 
 /**
- * _strncmp - Compare two strings up to a specified length.
+ * _strncmp - Compares two strings up to a specified length.
  * @string1: First string to compare.
  * @string2: Second string to compare.
- * @m: Maximum number of characters to compare.
+ * @n: Maximum number of characters to compare.
  *
- * Return: return 0 if the strings are equal up to m characters,
- *         return negative value if string1 is less than string2, 
- *         or positive value if string1 is greater than string2.
+ * Return: 0 if the strings are equal up to n characters,
+ *         a negative value if string1 is less than string2,
+ *         or a positive value if string1 is greater than string2.
  */
-int _strncmp(const char *string1, const char *string2, size_t m)
+int _strncmp(const char *string1, const char *string2, size_t n)
 {
 	unsigned char ch1, ch2;
 
-	while (m-- > 0)
+	while (n-- > 0)
 	{
-		ch1 = (unsigned char) *string1++;
-		ch2 = (unsigned char) *string2++;
+		ch1 = (unsigned char)*string1++;
+		ch2 = (unsigned char)*string2++;
 
 		if (ch1 != ch2)
 			return (ch1 - ch2);
@@ -66,11 +68,11 @@ int _strncmp(const char *string1, const char *string2, size_t m)
 }
 
 /**
- * _strstr - checks if needle starts with haystack
- * @haystack: string to search
- * @needle: the substring to find
+ * _strstr - Checks if needle starts with haystack.
+ * @haystack: String to search.
+ * @needle: The substring to find.
  *
- * Return: return the address of the next character of haystack or NULL
+ * Return: Address of the next character of haystack or NULL.
  */
 char *_strstr(char *haystack, char *needle)
 {
@@ -85,29 +87,24 @@ char *_strstr(char *haystack, char *needle)
 			for (j = 0; needle[j] != '\0'; j++)
 			{
 				if (haystack[i + j] != needle[j])
-				{
 					break;
-				}
 			}
 
 			if (needle[j] == '\0')
-			{
 				return (&haystack[i]);
-			}
 		}
 	}
+
 	return (NULL);
 }
 
 /**
- * _strchr - function that finds a character in a string
+ * _strchr - Finds a character in a string.
+ * @string: Pointer to the string array input.
+ * @ch: Character to locate in the input array.
  *
- * @string: pointer to our string array input
- * @ch: character to locate from input array
- *
- * Return: the first occurence of a specified charatcer or null if not found
-*/
-
+ * Return: The first occurrence of a specified character or NULL if not found.
+ */
 char *_strchr(char *string, char ch)
 {
 	while (*string != '\0')
@@ -116,13 +113,13 @@ char *_strchr(char *string, char ch)
 			return (string);
 		string++;
 	}
-	/**
-	 * if ch is '\0', you should return
-	 * the pointer to the '\0' of the
-	 * string string
-	*/
+
+	/*
+	 * If ch is '\0', return the pointer to the '\0' of the string string.
+	 */
 	if (*string == ch)
 		return (string);
-	/*return null if not found*/
+
+	/* Return NULL if not found. */
 	return (NULL);
 }
