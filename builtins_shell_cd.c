@@ -1,15 +1,13 @@
 #include "shell.h"
 
 /**
- * shell_cd - Modifies the current working directory
+ * shell_cd - Modifies the current working directory.
  * @arguments: The array of arguments.
  */
 void shell_cd(char **arguments)
 {
-	int i;
+	int result;
 	char *directory = arguments[1];
-	
-
 
 	if (directory == NULL)
 	{
@@ -21,8 +19,8 @@ void shell_cd(char **arguments)
 		}
 	}
 
-	i = chdir(directory);
-	if (i == -1)
+	result = chdir(directory);
+	if (result == -1)
 	{
 		perror("cd");
 	}
