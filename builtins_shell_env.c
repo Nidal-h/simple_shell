@@ -3,15 +3,15 @@
 /**
  * shell_env - Displays all variables of the environment.
  *
- * Return: Void.
+ * Return: 0 on success, -1 on failure.
  */
 int shell_env(void)
 {
-	int j;
+	int index;
 
-	for (j = 0; environ[j]; j++)
+	for (index = 0; environ[index]; index++)
 	{
-		_puts(environ[j]);
+		_puts(environ[index]);
 		_putchar('\n');
 	}
 
