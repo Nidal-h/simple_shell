@@ -1,40 +1,22 @@
-#include "shell.h"
-
+#include "main.h"
 /**
- * main - implements a simple shell
- *
- * Return: EXIT_SUCCESS.
+ * main - function that is the entry point of the program
+ *@argc: counter
+ *@argv: array of string
+ * Return: exit succuss
  */
-int main(void)
+
+int main(int argc, char **argv)
 {
-	char *input;
-	char **args;
-	int status;
-
-	/* Register signal handlers */
-	signal(SIGINT, handle_sigint);
-	signal(SIGQUIT, handle_sigquit);
-	signal(SIGTSTP, handle_sigstp);
-
-	do {
-		input = get_input();
-		if (!input || !*input)/* EOF detected, exit the loop */
-			break;
-
-		args = tokenize_input(input);
-		if (!args || !*args)
-		{
-			free(input);
-			free_tokens(args);
-			continue;
-		}
-		status = execute(args);
-		free(input);
-		free_tokens(args);
-
-		/* Set status to 1 to continue the loop */
-		status = 1;
-	} while (status);
-
-	return (EXIT_SUCCESS);
+	if (isatty(STDIN_FILENO) == 1)
+	{
+		interactive();
+	}
+	else
+	{
+		non_interactive();
+	}
+	(void)(argc);
+	(void)(argv);
+	return (0);
 }

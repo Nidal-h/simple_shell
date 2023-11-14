@@ -1,59 +1,35 @@
-#include "shell.h"
-
-
-
+#include "main.h"
+/**
+ * execute - exe the cmd
+ * @arguments: have the comamnd
+ *
+ * Return: the func lanuch
+ */
 int execute(char **arguments)
 {
-	char *env_vars[2], *full_path;
-	pid_t child_pid;
-	int status = 0;
+	int (*bulitin_func[])(char **) = {
+		&my_cd,
+		&my_env,
+		&my_help,
+		&my_exit
+	};
 
-	if (arguments == NULL || *arguments == NULL)
-		return (status);
+	char *bulitin[13] = {
+		"cd",
+		"env",
+		"help",
+		"exit"
+	};
+	int c;
 
-	if (check_for_builtin(arguments))
-		return (status);
-
-	child_pid = fork();
-	if (child_pid < 0)
+	if (arguments[0] == NULL)
+		return (-1);
+	for (c = 0 ; c < num_bulitin(bulitin) ; c++)
 	{
-		_puterror("fork");
-		return (1);
-	}
-
-	if (child_pid == -1)
-	{
-		perror(arguments[0]);
-		free_tokens(arguments);
-		free_last_input();
-	}
-
-	if (child_pid == 0)
-	{
-		env_vars[0] = get_path();
-		env_vars[1] = NULL;
-		full_path = NULL;
-
-		if (arguments[0][0] != '/')
-			full_path = find_in_path(arguments[0]);
-
-		if (full_path == NULL)
-			full_path = arguments[0];
-
-		if (execve(full_path, arguments, env_vars) == -1)
+		if (strcmp(arguments[0], bulitin[c]) == 0)
 		{
-			perror(arguments[0]);
-			free_tokens(arguments);
-			free_last_input();
-			exit(EXIT_FAILURE);
+			return ((*bulitin_func[c])(arguments));
 		}
 	}
-	else
-	{
-		do {
-			waitpid(child_pid, &status, WUNTRACED);
-		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
-	}
-
-	return (status);
+	return (launch(arguments));
 }
