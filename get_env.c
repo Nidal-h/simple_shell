@@ -2,21 +2,20 @@
 
 /**
  * _getenv - Retrieves the value of an environment variable.
- * @n: Name of the environment variable
+ * @name: Name of the environment variable.
  *
- * Return: return the value of the environment variable, or NULL if it doesn't exist
+ * Return: The value of the environment variable, or NULL if it doesn't exist.
  */
-char *_getenv(const char *n)
+char *_getenv(const char *name)
 {
-	size_t len = _strlen(n);
-	char **environment;
-	
+	size_t len = _strlen(name);
+	char **env;
 
-	for (environment = environ; *environment != NULL; environment++)
+	for (env = environ; *env != NULL; env++)
 	{
-		if (_strncmp(*environment, n, len) == 0 && (*environment)[len] == '=')
+		if (_strncmp(*env, name, len) == 0 && (*env)[len] == '=')
 		{
-			return (&(*environment)[len + 1]);
+			return (&(*env)[len + 1]);
 		}
 	}
 
