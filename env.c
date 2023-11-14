@@ -1,21 +1,15 @@
-#include "main.h"
+#include "builtins.h"
+
 /**
- * my_env - function that prints env variable
- * @arguments: arguments
+ * bin_env - Implementation for the env builtin
  *
- * Return: 1 on success 0 in otherwise
- */
-int my_env(char **arguments)
+ * @info: General information about the shell
+ * @arguments: Command
+ **/
+void bin_env(general_t *info, char **arguments)
 {
-	int c = 0;
-	(void)(**arguments);
+	(void) info;
+	(void) arguments;
 
-	while (environ[c])
-	{
-		write(STDOUT_FILENO, environ[c], strlen(environ[c]));
-		write(STDOUT_FILENO, "\n", 1);
-		c++;
-	}
-	return (-1);
-
+	get_full_env();
 }
