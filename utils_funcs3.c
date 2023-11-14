@@ -46,10 +46,10 @@ char *_memset(char *s, char byte, unsigned int number)
 }
 
 /**
- * _memcpy - Copies a specified memory area.
+ * _memcpy - Copying a specified memory area.
  *
- * @destination: Buffer to copy to.
- * @source: Data to be copied.
+ * @destination: Buffer.
+ * @source: Data.
  * @n: Number of bytes from @source to copy.
  *
  * Return: Always 0 (Success)
@@ -65,7 +65,7 @@ char *_memcpy(char *destination, char *source, unsigned int n)
 }
 
 /**
- * _realloc - Adjusts the size of a previously allocated memory block.
+ * _realloc - Adjusting the size of a previously allocated memory block.
  * @pointer: Pointer to the previous mallocated block.
  * @old_sz: Byte size of the previous block.
  * @new_sz: Byte size of the new block.
