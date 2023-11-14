@@ -15,31 +15,33 @@
 #include <stdarg.h>
 #include <ctype.h>
 
-/*macros*/
+/* Macros */
 #define PATH_MAX_LENGTH 4096
 #define PATH_SEPARATOR ":"
 #define PROMPT "$ "
 #define MAX_TOKENS 1024
 #define BUFFER_SIZE 1024
 
-/* prompt */
+/* Function Declarations */
+
+/* Prompt */
 void prompt(void);
-/* get line */
+
+/* Get Line */
 void *get_line(void);
 
-/* get input */
+/* Get Input */
 char *get_input(void);
 void free_last_input(void);
 
-/* signal handler */
+/* Signal Handlers */
 void handle_sigint(int signal);
 void handle_sigquit(int signal);
 void handle_sigstp(int signal);
 
-
-/* built-in funcions */
+/* Built-in Functions */
 int check_for_builtin(char **arguments);
-int execute_buitlin(char *cmd, char **arguments);
+int execute_builtin(char *cmd, char **arguments);
 void shell_help(void);
 void shell_exit(char **arguments);
 void shell_cd(char **arguments);
@@ -48,60 +50,50 @@ int shell_unsetenv(char **arguments);
 int shell_env(void);
 int shell_clear(char **arguments);
 
-
-/* find in path */
+/* Find in Path */
 char *find_in_path(char *cmd);
 
-/* execute */
+/* Execute */
 int execute(char **arguments);
 
-/* parser */
-char **tokenize(char *string, const char *delimeter);
+/* Parser */
+char **tokenize(char *string, const char *delimiter);
 char **tokenize_input(char *input);
 
-/* get env */
-char *_getenv(const char *n);
+/* Get Environment */
+char *_getenv(const char *name);
 
-
-/* get path */
+/* Get Path */
 char *get_path(void);
 
-
-/* utils funcs1 */
+/* Utility Functions 1 */
 int _strlen(const char *string);
 int _strcmp(const char *string1, const char *string2);
 int _strncmp(const char *string1, const char *string2, size_t m);
 char *_strstr(char *haystack, char *needle);
 char *_strchr(char *string, char ch);
 
-
-/* utils funcs3 */
+/* Utility Functions 3 */
 int _atoi(const char *string);
 char *_memset(char *s, char byte, unsigned int number);
 char *_memcpy(char *destination, char *source, unsigned int n);
-void *_realloc(void *pointer, unsigned int old_sz, unsigned int new_sz);
+void *_realloc(void *pointer, unsigned int old_size, unsigned int new_size);
 void *_calloc(unsigned int nmemb, unsigned int size);
 
-
-
-/* free */
+/* Free */
 void free_error(char **argp, char *arguments);
 void free_tokens(char **pointer);
 void free_path(void);
 
-
-/* error */
+/* Error */
 void _puts(char *string);
 void _puterror(char *error);
 
-
-
-/* utils_funcs2 */
+/* Utility Functions 2 */
 char *_strcpy(char *destination, char *source);
 char *_strcat(char *destination, const char *source);
 char *_strdup(const char *string);
 int _putchar(char ch);
 unsigned int _strspn(char *s, char *acc);
 
-
-#endif
+#endif /* _SHELL_H_ */
