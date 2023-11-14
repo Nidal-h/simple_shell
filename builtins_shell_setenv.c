@@ -2,13 +2,13 @@
 
 /**
  * shell_setenv - Assigns a value to an environment variable.
- * @arguments: Arguments specifies the name and value of the environment variable.
+ * @arguments: Arguments specifying the name and value of the environment variable.
  *
- * Return: Nothing
+ * Return: 0 on success, -1 on failure.
  */
 int shell_setenv(char **arguments)
 {
-	char *v, *n;
+	char *variable, *value;
 
 	if (arguments[1] == NULL || arguments[2] == NULL)
 	{
@@ -16,10 +16,10 @@ int shell_setenv(char **arguments)
 		return (-1);
 	}
 
-	n = arguments[1];
-	v = arguments[2];
+	variable = arguments[1];
+	value = arguments[2];
 
-	if (setenv(n, v, 1) != 0)
+	if (setenv(variable, value, 1) != 0)
 	{
 		_puterror("setenv");
 		return (-1);
@@ -29,13 +29,13 @@ int shell_setenv(char **arguments)
 
 /**
  * shell_unsetenv - Removes a specified environment variable.
- * @arguments: Arguments specifies the name of the environment variable.
+ * @arguments: Arguments specifying the name of the environment variable.
  *
- * Return: Nothing
+ * Return: 0 on success, -1 on failure.
  */
 int shell_unsetenv(char **arguments)
 {
-	char *n;
+	char *variable;
 
 	if (arguments[1] == NULL)
 	{
@@ -43,11 +43,12 @@ int shell_unsetenv(char **arguments)
 		return (-1);
 	}
 
-	n = arguments[1];
+	variable = arguments[1];
 
-	if (unsetenv(n) != 0)
+	if (unsetenv(variable) != 0)
 	{
 		_puterror("unsetenv");
+		return (-1);
 	}
 	return (0);
 }
