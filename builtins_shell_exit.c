@@ -1,20 +1,17 @@
 #include "shell.h"
 
 /**
- * shell_exit - Terminates the shell.
- * @arguments: The array of Arguments.
- *
- * Return: Nothing.
+ * shell_help - Printing help.
  */
-void shell_exit(char **arguments)
+void shell_help(void)
 {
-	int s = 0;
-
-	if (arguments[1] != NULL)
-	{
-		s = _atoi(arguments[1]);
-	}
-	free_tokens(arguments);
-	free_last_input();
-	exit(s);
+	_puts("\nShell Version 1.0.0\n\n");
+	_puts("Usage: ./hsh\n\n");
+	_puts("Shell built-in commands:\n\n");
+	_puts("help\t\tDisplay this help information\n\n");
+	_puts("cd [dir]\tChange the current working directory\n\n");
+	_puts("env\t\tDisplay the environment variables\n\n");
+	_puts("setenv\t\tSet an environment variable\n\n");
+	_puts("unsetenv\tUnset an environment variable\n\n");
+	_puts("exit\t\tExit the shell\n\n");
 }
